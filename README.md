@@ -4,6 +4,7 @@ Archlinux dotfiles.
 Install
 
 ```bash
+$ sudo pacman -S base-devel npm
 $ sudo pacman -S thefuck fasd fzf vim tmux zsh-syntax-highlighting
 $ npm install --global pure-prompt
 $ git clone https://github.com/q9f/.dotfiles.git
@@ -27,4 +28,3 @@ Credits
 Thanks
 
 - inspired by: https://github.com/andresilva/dotfiles
-
