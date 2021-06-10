@@ -1,10 +1,15 @@
-# .skel
-my (arch) linux default skel of dot files
+# .dotfiles
+Archlinux dotfiles.
+
+Install
 
 ```bash
-$ https://github.com/5chdn/.skel.git
-$ rm -rf .skel/.git/ .skel/LICENSE .skel/README.md
-$ rsync .skel/* $HOME/
+$ sudo pacman -S thefuck fasd fzf vim tmux zsh-syntax-highlighting
+$ npm install --global pure-prompt
+$ git clone https://github.com/q9f/.dotfiles.git
+$ rm -rf .dotfiles/.git/ .dotfiles/LICENSE .dotfiles/README.md
+$ rsync .dotfiles/* $HOME/
+$ rm -rf .dotfiles/
 $ source $HOME/.zshrc
 ```
 
@@ -21,5 +26,5 @@ Credits
 
 Thanks
 
-- remotely inspired by: https://github.com/andresilva/dotfiles
+- inspired by: https://github.com/andresilva/dotfiles
 
