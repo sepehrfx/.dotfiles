@@ -9,7 +9,6 @@ Build instructions
 - `go` executable in $PATH
 
 ### Using Makefile
-
 Makefile will set up and use its own `$GOPATH` under the project root.
 
 ```sh
