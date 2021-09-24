@@ -58,6 +58,7 @@ export GOPATH="$HOME/.go"
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.gem/ruby/3.0.0/bin"
 export SHELL="/usr/bin/zsh"
 
 # fish-like
@@ -66,3 +67,11 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # fzf :)
 setopt AUTO_CD
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# NodeJS
+source /usr/share/nvm/init-nvm.sh
+nvm use stable --silent
+
+# Welcome the user with the weather report
+echo "Welcome back, $USER! <3"
+curl "https://wttr.in/?format=4"
