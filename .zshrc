@@ -55,11 +55,14 @@ PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export CLICOLOR=true
 export EDITOR=vim
 export GOPATH="$HOME/.go"
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.gem/ruby/3.0.0/bin"
+export PATH="$PATH:$GEM_HOME/bin"
 export SHELL="/usr/bin/zsh"
+export MAKEFLAGS="-j $(nproc)"
+export MAKEOPTS="-j $(nproc)"
 
 # fish-like
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -70,8 +73,8 @@ setopt AUTO_CD
 
 # NodeJS
 source /usr/share/nvm/init-nvm.sh
-nvm use stable --silent
+### nvm use stable --silent
 
 # Welcome the user with the weather report
 echo "Welcome back, $USER! <3"
-curl "https://wttr.in/?format=4"
+### curl "https://wttr.in/berlin?format=4"
