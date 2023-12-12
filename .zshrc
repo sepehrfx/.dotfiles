@@ -4,9 +4,21 @@ autoload -Uz compinit
 compinit
 
 # pure zsh
-fpath=( "$HOME/.zfunc" $fpath )
+fpath=( "$HOME/.zsh-pure-prompt" $fpath )
 autoload -U promptinit; promptinit
 prompt pure
+
+# nix
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+# https://github.com/chisui/zsh-nix-shell
+source $HOME/.zsh-nix-shell/nix-shell.plugin.zsh
+# https://github.com/nix-community/nix-zsh-completions
+source $HOME/.nix-zsh-completions/nix-zsh-completions.plugin.zsh
+fpath=( $HOME/.nix-zsh-completions $fpath )
+autoload -U compinit && compinit
+
+# opam
+[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 # colors
 eval "`dircolors`"
@@ -59,8 +71,12 @@ export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$GEM_HOME/bin"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
+export PATH="$PATH:$HOME/.gem/ruby/3.0.0/bin"
+export BUNDLE_PATH="$HOME/.local/share/gem"
 export SHELL="/usr/bin/zsh"
+export GPG_TTY=$TTY
 export MAKEFLAGS="-j $(nproc)"
 export MAKEOPTS="-j $(nproc)"
 
@@ -73,8 +89,7 @@ setopt AUTO_CD
 
 # NodeJS
 source /usr/share/nvm/init-nvm.sh
-### nvm use stable --silent
+export PATH=$HOME/.meteor:$PATH
 
-# Welcome the user with the weather report
+# Welcome the user
 echo "Welcome back, $USER! <3"
-### curl "https://wttr.in/berlin?format=4"
