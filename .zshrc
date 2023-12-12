@@ -30,9 +30,6 @@ alias grep="grep --color=auto"
 eval "$(fasd --init auto)"
 alias j="fasd_cd -i"
 
-# the fuck
-eval $(thefuck --alias)
-
 # add ssh to keychain
 eval `keychain --agents ssh --eval id_ed25519 --quiet`
 

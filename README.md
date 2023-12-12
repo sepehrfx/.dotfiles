@@ -5,7 +5,7 @@ Install
 
 ```bash
 $ sudo pacman -S base-devel npm git rsync
-$ sudo pacman -S thefuck fasd fzf vim tmux zsh-syntax-highlighting powerline keychain
+$ sudo pacman -S fasd fzf vim tmux zsh-syntax-highlighting powerline keychain
 $ npm install --global pure-prompt
 $ git clone https://github.com/q9f/.dotfiles.git
 $ rm -rf .dotfiles/.git/ .dotfiles/.gitignore .dotfiles/LICENSE .dotfiles/README.md
@@ -22,9 +22,11 @@ Credits
 - uses dracula: https://github.com/dracula/vim
 - uses airline: https://github.com/vim-airline/vim-airline
 - uses tmux-dracula: https://github.com/sei40kr/tmux-airline-dracula
-- uses thefuck: https://github.com/nvbn/thefuck
 - uses `zsh-syntax-highlighting` (fish-like)
+- uses `zsh-nix-shell`: https://github.com/chisui/zsh-nix-shell
+- uses `nix-zsh-completions`: https://github.com/nix-community/nix-zsh-completions
 
 Thanks
 
+- this patch: https://discourse.nixos.org/t/custom-prompts-or-shell-depth-indicator-for-nix-shell-nix-develop/29942/4
 - inspired by: https://github.com/andresilva/dotfiles
