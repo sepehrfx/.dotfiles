@@ -1,3 +1,6 @@
 [submodule ".zsh/pure"]
 	path = .zsh/pure
 	url = https://github.com/sindresorhus/pure.git
+[submodule ".zsh/nix-shell"]
+	path = .zsh/nix-shell
+	url = https://github.com/chisui/zsh-nix-shell.git
