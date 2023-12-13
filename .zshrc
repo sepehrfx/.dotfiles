@@ -27,7 +27,12 @@ alias ll="ls --color=auto -lshaF"
 alias grep="grep --color=auto"
 
 # fasd :)
-eval "$(fasd --init auto)"
+fasd_cache="$HOME/.fasd-init-zsh"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+  fasd --init auto posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache
 alias j="fasd_cd -i"
 
 # add ssh to keychain
