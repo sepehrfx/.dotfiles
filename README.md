@@ -16,8 +16,8 @@ source $HOME/.zshrc
 
 Credits
 
-- uses fasd: https://github.com/clvv/fasd
 - uses pure: https://github.com/sindresorhus/pure
+- uses fasd: https://github.com/clvv/fasd
 - uses fzf: https://github.com/junegunn/fzf
 - uses dracula: https://github.com/dracula/vim
 - uses airline: https://github.com/vim-airline/vim-airline
