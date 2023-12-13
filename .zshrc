@@ -13,8 +13,8 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 # https://github.com/chisui/zsh-nix-shell
 source $HOME/.zsh/nix-shell/nix-shell.plugin.zsh
 # https://github.com/nix-community/nix-zsh-completions
-source $HOME/.nix-zsh-completions/nix-zsh-completions.plugin.zsh
-fpath=( $HOME/.nix-zsh-completions $fpath )
+source $HOME/.zsh/nix-completions/nix-zsh-completions.plugin.zsh
+fpath=( $HOME/.zsh/nix-completions $fpath )
 autoload -U compinit && compinit
 
 # opam
