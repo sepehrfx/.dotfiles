@@ -1,4 +1,4 @@
-" MIT License. Copyright (c) 2013-2018 Bailey Ling et al.
+" MIT License. Copyright (c) 2013-2021 Bailey Ling et al.
 " vim: et ts=2 sts=2 sw=2
 
 scriptencoding utf-8
@@ -22,7 +22,19 @@ function! s:prototype.add_raw(text) dict
   call add(self._sections, ['', a:text])
 endfunction
 
-function! s:get_prev_group(sections, i)
+function! s:prototype.insert_section(group, contents, position) dict
+  call insert(self._sections, [a:group, a:contents], a:position)
+endfunction
+
+function! s:prototype.insert_raw(text, position) dict
+  call insert(self._sections, ['', a:text], a:position)
+endfunction
+
+function! s:prototype.get_position() dict
+  return len(self._sections)
+endfunction
+
+function! airline#builder#get_prev_group(sections, i)
   let x = a:i - 1
   while x >= 0
     let group = a:sections[x][0]
@@ -30,6 +42,19 @@ function! s:get_prev_group(sections, i)
       return group
     endif
     let x = x - 1
+  endwhile
+  return ''
+endfunction
+
+function! airline#builder#get_next_group(sections, i)
+  let x = a:i + 1
+  let l = len(a:sections)
+  while x < l
+    let group = a:sections[x][0]
+    if group != '' && group != '|'
+      return group
+    endif
+    let x = x + 1
   endwhile
   return ''
 endfunction
@@ -48,7 +73,7 @@ function! s:prototype.build() dict
     let group = section[0]
     let contents = section[1]
     let pgroup = prev_group
-    let prev_group = s:get_prev_group(self._sections, i)
+    let prev_group = airline#builder#get_prev_group(self._sections, i)
     if group ==# 'airline_c' && &buftype ==# 'terminal' && self._context.active
       let group = 'airline_term'
     elseif group ==# 'airline_c' && !self._context.active && has_key(self._context, 'bufnr')
@@ -65,7 +90,7 @@ function! s:prototype.build() dict
       " need to fix highlighting groups, since we
       " have skipped a section, we actually need
       " the previous previous group and so the
-      " seperator goes from the previous previous group
+      " separator goes from the previous previous group
       " to the current group
       let pgroup = group
     endif
@@ -81,12 +106,12 @@ function! s:prototype.build() dict
         let line .= '%#'.group.'#'
       elseif split
         if !is_empty
-          let line .= s:get_transitioned_seperator(self, prev_group, group, side)
+          let line .= s:get_transitioned_separator(self, prev_group, group, side)
         endif
         let split = 0
       else
         if !is_empty
-          let line .= s:get_seperator(self, prev_group, group, side)
+          let line .= s:get_separator(self, prev_group, group, side)
         endif
       endif
       let line .= is_empty ? '' : s:get_accented_line(self, group, contents)
@@ -102,22 +127,18 @@ function! s:prototype.build() dict
   return line
 endfunction
 
-function! s:should_change_group(group1, group2)
+function! airline#builder#should_change_group(group1, group2)
   if a:group1 == a:group2
     return 0
   endif
   let color1 = airline#highlighter#get_highlight(a:group1)
   let color2 = airline#highlighter#get_highlight(a:group2)
-  if g:airline_gui_mode ==# 'gui'
-    return color1[1] != color2[1] || color1[0] != color2[0]
-  else
-    return color1[3] != color2[3] || color1[2] != color2[2]
-  endif
+  return color1[1] != color2[1] || color1[0] != color2[0]
+      \ ||  color1[2] != color2[2] || color1[3] != color2[3]
 endfunction
 
-function! s:get_transitioned_seperator(self, prev_group, group, side)
+function! s:get_transitioned_separator(self, prev_group, group, side)
   let line = ''
-  call airline#highlighter#add_separator(a:prev_group, a:group, a:side)
   if get(a:self._context, 'tabline', 0) && get(g:, 'airline#extensions#tabline#alt_sep', 0) && a:group ==# 'airline_tabsel' && a:side
     call airline#highlighter#add_separator(a:prev_group, a:group, 0)
     let line .= '%#'.a:prev_group.'_to_'.a:group.'#'
@@ -131,9 +152,9 @@ function! s:get_transitioned_seperator(self, prev_group, group, side)
   return line
 endfunction
 
-function! s:get_seperator(self, prev_group, group, side)
-  if s:should_change_group(a:prev_group, a:group)
-    return s:get_transitioned_seperator(a:self, a:prev_group, a:group, a:side)
+function! s:get_separator(self, prev_group, group, side)
+  if airline#builder#should_change_group(a:prev_group, a:group)
+    return s:get_transitioned_separator(a:self, a:prev_group, a:group, a:side)
   else
     return a:side ? a:self._context.left_alt_sep : a:self._context.right_alt_sep
   endif
@@ -141,6 +162,7 @@ endfunction
 
 function! s:get_accented_line(self, group, contents)
   if a:self._context.active
+    " active window
     let contents = []
     let content_parts = split(a:contents, '__accent')
     for cpart in content_parts
@@ -150,6 +172,7 @@ function! s:get_accented_line(self, group, contents)
     let line = join(contents, a:group)
     let line = substitute(line, '__restore__', a:group, 'g')
   else
+    " inactive window
     let line = substitute(a:contents, '%#__accent[^#]*#', '', 'g')
     let line = substitute(line, '%#__restore__#', '', 'g')
   endif
@@ -175,20 +198,27 @@ function! s:section_is_empty(self, content)
   if get(w:, 'airline_skip_empty_sections', -1) == 0
     return 0
   endif
-  " assume accents sections to be never empty
-  " (avoides, that on startup the mode message becomes empty)
-  if match(a:content, '%#__accent_[^#]*#.*__restore__#') > -1
-    return 0
-  endif
-  if empty(a:content)
+
+  " special case: When the content is %=, that is the
+  " separation marker, which switches between left- and
+  " right-aligned content.
+  " Consider that to be empty, so that the previous previous
+  " group is correctly remembered in the builder() function
+  if empty(a:content) || a:content is# '%='
     return 1
   endif
-  let list=matchlist(a:content, '%{\zs.\{-}\ze}', 1, start)
-  if empty(list)
-    return 0 " no function in statusline text
+
+  let stripped = substitute(a:content,
+        \ '\(%{.*}\|%#__accent_[^#]*#\|%#__restore__#\|%( \| %)\)', '', 'g')
+
+  if !empty(stripped)
+    return 0 " There is content in the statusline
   endif
-  while len(list) > 0
-    let expr = list[0]
+
+  let exprlist = []
+  call substitute(a:content, '%{\([^}]*\)}', '\=add(exprlist, submatch(1))', 'g')
+
+  for expr in exprlist
     try
       " catch all exceptions, just in case
       if !empty(eval(expr))
@@ -197,9 +227,7 @@ function! s:section_is_empty(self, content)
     catch
       return 0
     endtry
-    let start += 1
-    let list=matchlist(a:content, '%{\zs.\{-}\ze}', 1, start)
-  endw
+  endfor
   return 1
 endfunction
 
