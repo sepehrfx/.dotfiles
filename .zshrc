@@ -84,9 +84,5 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 setopt AUTO_CD
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# NodeJS
-source /usr/share/nvm/init-nvm.sh
-export PATH=$HOME/.meteor:$PATH
-
 # Welcome the user
 echo "Welcome back, $USER! <3"
