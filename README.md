@@ -7,7 +7,7 @@ Install
 sudo pacman -S base base-devel curl zsh
 curl -L https://nixos.org/nix/install | sh -s -- --daemon
 nix-env --install man-db nodejs git rsync fasd-unstable fzf vim tmux zsh-syntax-highlighting powerline keychain pure-prompt
-git clone https://github.com/q9f/.dotfiles.git
+git clone --recursive https://github.com/q9f/.dotfiles.git
 rm -rf .dotfiles/.git/ .dotfiles/.gitignore .dotfiles/LICENSE .dotfiles/README.md
 rsync -avh .dotfiles/ $HOME/
 rm -rf .dotfiles/
