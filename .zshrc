@@ -4,7 +4,7 @@ autoload -Uz compinit
 compinit
 
 # pure zsh
-fpath=( "$HOME/.zsh-pure-prompt" $fpath )
+fpath=( "$HOME/.zsh/pure" $fpath )
 autoload -U promptinit; promptinit
 prompt pure
 

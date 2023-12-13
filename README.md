@@ -4,12 +4,9 @@ Archlinux dotfiles.
 Install
 
 ```bash
-sudo pacman -S base base-devel
+sudo pacman -S base base-devel curl
 curl -L https://nixos.org/nix/install | sh -s -- --daemon
-
-
-sudo pacman -S npm git rsync fasd fzf vim tmux zsh-syntax-highlighting powerline keychain
-
+nix-env --install man-db zsh nodejs git rsync fasd-unstable fzf vim tmux zsh-syntax-highlighting powerline keychain pure-prompt
 git clone https://github.com/q9f/.dotfiles.git
 rm -rf .dotfiles/.git/ .dotfiles/.gitignore .dotfiles/LICENSE .dotfiles/README.md
 rsync -avh .dotfiles/ $HOME/
