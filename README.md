@@ -4,14 +4,17 @@ Archlinux dotfiles.
 Install
 
 ```bash
-$ sudo pacman -S base-devel npm git rsync
-$ sudo pacman -S fasd fzf vim tmux zsh-syntax-highlighting powerline keychain
-$ npm install --global pure-prompt
-$ git clone https://github.com/q9f/.dotfiles.git
-$ rm -rf .dotfiles/.git/ .dotfiles/.gitignore .dotfiles/LICENSE .dotfiles/README.md
-$ rsync -avh .dotfiles/ $HOME/
-$ rm -rf .dotfiles/
-$ source $HOME/.zshrc
+sudo pacman -S base base-devel
+curl -L https://nixos.org/nix/install | sh -s -- --daemon
+
+
+sudo pacman -S npm git rsync fasd fzf vim tmux zsh-syntax-highlighting powerline keychain
+
+git clone https://github.com/q9f/.dotfiles.git
+rm -rf .dotfiles/.git/ .dotfiles/.gitignore .dotfiles/LICENSE .dotfiles/README.md
+rsync -avh .dotfiles/ $HOME/
+rm -rf .dotfiles/
+source $HOME/.zshrc
 ```
 
 Credits
