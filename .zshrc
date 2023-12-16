@@ -83,7 +83,7 @@ export MAKEFLAGS="-j $(nproc)"
 export MAKEOPTS="-j $(nproc)"
 
 # fish-like
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # fzf :)
 setopt AUTO_CD

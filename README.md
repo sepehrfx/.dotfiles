@@ -5,10 +5,11 @@ Install
 
 ```bash
 sudo pacman -S base base-devel linux linux-firmware amd-ucode dhcpcd iwd curl zsh vim
+sudo systemctl enable --now dhcpcd iwd
 curl -L https://nixos.org/nix/install | sh -s -- --daemon
-nix-env --install man-db nodejs git rsync fasd-unstable fzf vim tmux zsh-syntax-highlighting powerline keychain pure-prompt
+nix-env --install man-pages man-db nodejs git rsync fasd-unstable fzf tmux zsh-syntax-highlighting powerline keychain pure-prompt ruby
 git clone --recursive https://github.com/q9f/.dotfiles.git
-rm -rf .dotfiles/.git/ .dotfiles/.gitignore .dotfiles/.gitmodules .dotfiles/LICENSE .dotfiles/README.md
+rm -rf .dotfiles/.gi* .dotfiles/LICENSE .dotfiles/README.md
 rsync -avh .dotfiles/ $HOME/
 rm -rf .dotfiles/
 chsh -s /usr/bin/zsh
