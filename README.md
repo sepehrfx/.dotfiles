@@ -4,7 +4,7 @@ Archlinux/Nix dotfiles.
 Install
 
 ```bash
-sudo pacman -S base base-devel curl zsh
+sudo pacman -S base base-devel linux linux-firmware amd-ucode dhcpcd iwd curl zsh vim
 curl -L https://nixos.org/nix/install | sh -s -- --daemon
 nix-env --install man-db nodejs git rsync fasd-unstable fzf vim tmux zsh-syntax-highlighting powerline keychain pure-prompt
 git clone --recursive https://github.com/q9f/.dotfiles.git
