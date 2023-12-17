@@ -1,13 +1,16 @@
 # .dotfiles
 Archlinux/Nix dotfiles.
 
+* pacman: core, system, services, configs
+* nix: applications
+
 Install
 
 ```bash
-sudo pacman -S base base-devel linux linux-firmware amd-ucode dhcpcd iwd curl zsh vim xorg xorg-xinit i3 ttf-dejavu
+sudo pacman -S base base-devel linux linux-firmware amd-ucode dhcpcd iwd curl zsh vim xorg xorg-xinit xautolock i3 ttf-dejavu man-pages man-db dmenu
 sudo systemctl enable --now dhcpcd iwd
 curl -L https://nixos.org/nix/install | sh -s -- --daemon
-nix-env --install man-pages man-db nodejs git rsync fasd-unstable fzf tmux zsh-syntax-highlighting powerline openssh keychain pure-prompt ruby btop neofetch dmenu terminator
+nix-env --install nodejs git rsync fasd-unstable fzf tmux zsh-syntax-highlighting powerline openssh keychain pure-prompt ruby btop neofetch terminator
 git clone --recursive https://github.com/q9f/.dotfiles.git
 rm -rf .dotfiles/.gi* .dotfiles/LICENSE .dotfiles/README.md
 rsync -avh .dotfiles/ $HOME/
