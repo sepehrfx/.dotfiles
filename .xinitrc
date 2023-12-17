@@ -1,2 +1,2 @@
 #!/bin/sh
-exec mate-session
+exec /usr/bin/i3

@@ -14,6 +14,7 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 source $HOME/.zsh/nix-shell/nix-shell.plugin.zsh
 # https://github.com/nix-community/nix-zsh-completions
 source $HOME/.zsh/nix-completions/nix-zsh-completions.plugin.zsh
+export NIXPKGS_ALLOW_UNFREE=1
 fpath=( $HOME/.zsh/nix-completions $fpath )
 autoload -U compinit && compinit
 
