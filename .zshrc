@@ -18,9 +18,6 @@ export NIXPKGS_ALLOW_UNFREE=1
 fpath=( $HOME/.zsh/nix-completions $fpath )
 autoload -U compinit && compinit
 
-# opam
-[[ ! -r $HOME/.opam/opam-init/init.zsh ]] || source $HOME/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
 # colors
 eval "`dircolors`"
 alias ls="ls --color=auto"
@@ -92,3 +89,5 @@ setopt AUTO_CD
 
 # Welcome the user
 echo "Welcome back, $USER! <3"
+
+
