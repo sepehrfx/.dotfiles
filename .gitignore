@@ -1,3 +1,10 @@
 .fasd
 .viminfo
 .zcompdump
+.config/Brav*
+.config/systemd
+
+.config/Brav*
+.config/systemd
+.config/syncthing
+
