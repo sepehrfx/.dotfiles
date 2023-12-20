@@ -7,7 +7,7 @@ Archlinux/Nix dotfiles.
 Setup base system
 
 ```bash
-sudo pacman -S base base-devel linux linux-firmware amd-ucode dhcpcd iwd curl zsh vim xorg xorg-xinit xautolock i3 ttf-dejavu man-pages man-db dmenu
+sudo pacman -S base base-devel linux linux-firmware amd-ucode dhcpcd iwd curl zsh vim xorg xorg-xinit xautolock i3 ttf-dejavu man-pages man-db dmenu polkit
 sudo systemctl enable --now dhcpcd iwd
 curl -L https://nixos.org/nix/install | sh -s -- --daemon
 nix-env --install nodejs git rsync fasd-unstable fzf tmux zsh-syntax-highlighting openssh keychain pure-prompt ruby btop neofetch-unstable terminator
