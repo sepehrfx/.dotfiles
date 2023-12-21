@@ -24,7 +24,7 @@ What else
 ```bash
 sudo pacman -S syncthing noto-fonts noto-fonts-emoji adwaita-icon-theme
 sudo systemctl enable --now syncthing@user
-nix-env --install brave enpass code ranger okular shotwell pinta
+nix-env --install brave enpass code ranger okular shotwell pinta scrot
 ```
 
 Credits
