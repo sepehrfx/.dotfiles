@@ -22,9 +22,9 @@ source $HOME/.zshrc
 What else
 
 ```bash
-sudo pacman -S syncthing noto-fonts noto-fonts-emoji adwaita-icon-theme
+sudo pacman -S syncthing noto-fonts noto-fonts-emoji adwaita-icon-theme cups cups-pdf
 sudo systemctl enable --now syncthing@user
-nix-env --install brave enpass code ranger okular shotwell pinta scrot caja
+nix-env --install brave enpass code ranger okular shotwell pinta scrot mate.caja meld hplip
 ```
 
 Credits
