@@ -7,15 +7,6 @@ compinit
 fpath=( "$HOME/.zsh/pure" $fpath )
 autoload -U promptinit; promptinit
 prompt pure
-
-# nix
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
-# https://github.com/chisui/zsh-nix-shell
-source $HOME/.zsh/nix-shell/nix-shell.plugin.zsh
-# https://github.com/nix-community/nix-zsh-completions
-source $HOME/.zsh/nix-completions/nix-zsh-completions.plugin.zsh
-export NIXPKGS_ALLOW_UNFREE=1
-fpath=( $HOME/.zsh/nix-completions $fpath )
 autoload -U compinit && compinit
 
 # colors
@@ -81,7 +72,7 @@ export MAKEFLAGS="-j $(nproc)"
 export MAKEOPTS="-j $(nproc)"
 
 # fish-like
-source $HOME/.nix-profile/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # fzf :)
 setopt AUTO_CD
@@ -89,5 +80,4 @@ setopt AUTO_CD
 
 # Welcome the user
 echo "Welcome back, $USER! <3"
-
 
