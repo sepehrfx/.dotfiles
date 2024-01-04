@@ -80,4 +80,3 @@ setopt AUTO_CD
 
 # Welcome the user
 echo "Welcome back, $USER! <3"
-
