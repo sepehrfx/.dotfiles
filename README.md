@@ -19,7 +19,7 @@ source $HOME/.zshrc
 What else
 
 ```bash
-sudo pacman -S syncthing ttf-fira-code noto-fonts noto-fonts-emoji adwaita-icon-theme cups cups-pdf ranger okular shotwell pinta scrot caja meld mtr code obsidian hplip signal-desktop
+sudo pacman -S syncthing ttf-fira-code noto-fonts noto-fonts-emoji adwaita-icon-theme cups cups-pdf ranger okular shotwell pinta scrot caja meld mtr code obsidian hplip signal-desktop speedcrunch
 sudo systemctl enable --now syncthing@user
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
