@@ -1,14 +1,19 @@
 {
-    "editor.fontFamily": "'Fira Code', 'monospace', monospace",
-    "editor.fontLigatures": true,
-    "editor.tabSize": 2,
-    "editor.indentSize": 2,
-    "editor.renderFinalNewline": "on",
-    "editor.rulers": [
-        80, 120
-    ],
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "workbench.colorTheme": "Default Dark Modern",
+  "editor.fontFamily": "'Fira Code', 'monospace', monospace",
+  "editor.fontLigatures": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.tabSize": 2,
+  "editor.indentSize": 2,
+  "editor.renderFinalNewline": "on",
+  "editor.rulers": [
+    72, 80, 120
+  ],
+  "explorer.confirmDragAndDrop": false,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "ruby.format": "rufo",
+  "rufo.exe": "rufo",
+  "update.mode": "manual",
+  "workbench.colorTheme": "Default Dark Modern",
 }
